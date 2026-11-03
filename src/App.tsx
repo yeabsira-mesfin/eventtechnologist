@@ -1,101 +1,13 @@
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Icon } from './components/Icon';
-import { SectionHeading } from './components/SectionHeading';
-import { SiteHeader } from './components/SiteHeader';
+import { SiteHeader, destinations } from './components/SiteHeader';
+import { Home } from './pages/Home';
+import { Hub } from './pages/Hub';
+import { MobileApps } from './pages/MobileApps';
 import { Agenda } from './sections/Agenda';
 import { Credentials } from './sections/Credentials';
-import { clients, metrics, profile, progression, tools } from './content';
-
-function EventPass() {
-  // Decorative only. This is not a real ticket, registration, or Cvent product.
-  return <div className="pass-wrap" aria-hidden="true">
-    <div className="pass-orbit pass-orbit-one"/><div className="pass-orbit pass-orbit-two"/>
-    <div className="pass-card">
-      <div className="pass-card-top"><span>ALL ACCESS <span className="pass-dot">●</span></span><span>PORTFOLIO / 2026</span></div>
-      <div className="pass-symbol"><span/><span/><span/><span/></div>
-      <div className="pass-card-middle"><div className="pass-meta">ATTENDEE EXPERIENCE NO. 001</div><h3>Behind every<br/><em>great event.</em></h3><p>THE PEOPLE. THE PLATFORMS.<br/>THE DETAILS THAT MATTER.</p></div>
-      <div className="pass-divider"><span/><span/></div>
-      <div className="pass-card-bottom"><div><span>YOUR HOST</span><strong>YEABSIRA MESFIN</strong></div><div><span>ACCESS</span><strong>FULL EXPERIENCE <span className="pass-mini-arrow">↗</span></strong></div></div>
-    </div>
-    <div className="pass-shadow-note"><span className="note-icon">✦</span><span>WELCOME IN<br/><strong>YOU'RE ON THE LIST</strong></span></div>
-  </div>;
-}
-
-function Hero() {
-  return <section className="hero" id="top" aria-labelledby="hero-title">
-    <div className="hero-grid-decoration" aria-hidden="true"/>
-    <div className="container hero-content">
-      <div className="hero-copy">
-        <div className="hero-kicker"><span className="mini-spark" aria-hidden="true">✳</span> THE EXPERIENCE <span className="kicker-sep" aria-hidden="true"/> 2026 EDITION</div>
-        <h1 id="hero-title">Great events<br/>feel <em>effortless.</em><br/><span>That's the work.</span></h1>
-        <p className="hero-subtitle">I'm <strong>{profile.name}</strong>, an event technologist and Cvent specialist turning complex registrations, attendee journeys and event operations into experiences people remember.</p>
-        <div className="hero-actions">
-          <a href="/experience" className="button button-lime">Explore the experience <Icon name="arrow" size={18}/></a>
-          <a href="/credentials" className="text-link">See my credentials <Icon name="external" size={17}/></a>
-        </div>
-        <div className="hero-proof"><div className="avatar-monogram" aria-hidden="true">YM</div><div><strong>5+ years in event technology</strong><span>Client delivery · Cvent · Attendee experience</span></div></div>
-      </div>
-      <EventPass/>
-    </div>
-    <div className="hero-bottom container"><span><span className="scroll-icon" aria-hidden="true">↓</span> EXPLORE AT YOUR OWN PACE</span><span>THOUGHTFULLY BUILT. HUMANLY DELIVERED.</span></div>
-  </section>;
-}
-
-function Impact() {
-  return <section className="impact" id="about" aria-label="Career impact"><div className="container impact-grid">
-    <div className="impact-intro"><span className="impact-star" aria-hidden="true">✳</span><span>THE NUMBERS<br/>BEHIND THE<br/>EXPERIENCE</span></div>
-    {metrics.map(metric => <div className="impact-number" key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
-  </div></section>;
-}
-
-function Career() {
-  return <section className="career-section section" id="career" aria-label="Career at MMCY"><div className="container career-layout">
-    <div className="career-left">
-      <SectionHeading eyebrow="02 / BEHIND THE SCENES" heading={<>The experience<br/>behind the events.</>} description="From building registrations to guiding delivery teams, my career grew by solving the details that make an event run smoothly."/>
-      <div className="career-quote"><span aria-hidden="true">“</span><p>Technology should make the event feel simpler, not more complicated.</p></div>
-    </div>
-    <div className="career-card">
-      <div className="career-card-header"><div><span className="career-label">CAREER HIGHLIGHT</span><h3>MMCY</h3><p><time dateTime="2022-02">Feb 2022</time> — <time dateTime="2025-08">Aug 2025</time></p></div><div className="career-asterisk" aria-hidden="true">✳</div></div>
-      <div className="career-line"/><p className="career-card-subtitle">One career path. Increasing ownership.</p>
-      <div className="progression">{progression.map((role, index) => <div className="progress-item" key={role}><span className="progress-node" aria-hidden="true">{index + 1}</span><span>{role}</span>{index === progression.length - 1 && <span className="latest-label">FINAL ROLE · LED 4</span>}</div>)}</div>
-      <div className="client-divider"/>
-      <span className="career-label">CLIENT PROGRAMS SUPPORTED THROUGH MMCY</span>
-      <div className="client-grid">{clients.map(client => <span key={client}>{client}</span>)}</div>
-    </div>
-  </div></section>;
-}
-
-function Toolkit() {
-  return <section className="tool-section" aria-label="Production toolkit"><div className="container tool-layout">
-    <div><span className="eyebrow"><span className="eyebrow-line" aria-hidden="true"/>03 / PRODUCTION TOOLKIT</span><h2>The tools behind<br/><em>the magic.</em></h2></div>
-    <div className="tool-list">{tools.map((tool, index) => <span className="tool-pill" key={tool}><span className="tool-pill-num" aria-hidden="true">0{(index % 4) + 1}</span>{tool}</span>)}</div>
-  </div></section>;
-}
-
-function Contact() {
-  const emailSubject = encodeURIComponent('Event technology opportunity');
-  return <section className="contact-section" id="contact" aria-label="Contact"><div className="container contact-layout">
-    <div className="contact-copy">
-      <span className="contact-eyebrow"><span className="status-dot" aria-hidden="true"/> THE CONVERSATION CONTINUES</span>
-      <h2>Let's make the next<br/><em>event exceptional.</em></h2>
-      <p>Hiring for a Cvent, event technology or event operations role? I'd love to connect.</p>
-      <div className="contact-actions">
-        <a href={`mailto:${profile.email}?subject=${emailSubject}`} className="button button-lime">Start a conversation <Icon name="arrow" size={19}/></a>
-        <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
-      </div>
-    </div>
-    <div className="contact-art" aria-hidden="true"><span className="contact-ring ring-one"/><span className="contact-ring ring-two"/><div className="contact-asterisk">✳</div></div>
-  </div></section>;
-}
-
-function RouteReset() { const { pathname } = useLocation(); useEffect(()=>{window.scrollTo(0,0); document.getElementById('main')?.focus();},[pathname]); return null; }
-export default function App() {
- return <BrowserRouter><SiteHeader/><RouteReset/><main id="main" tabIndex={-1}><Routes>
- <Route path="/" element={<><Hero/><Impact/></>}/>
- <Route path="/experience" element={<><div className="container route-intro"><h1>Your all-access experience.</h1><p>Explore the people, platforms and details behind my career.</p><div className="destination-grid">{[['/mobile-apps','Mobile event apps'],['/sessions','My professional expertise'],['/career','Behind the scenes'],['/credentials','Credentials desk']].map(([path,label])=><Link className="destination-card" to={path} key={path}>{label} ↗</Link>)}</div></div><Toolkit/></>}/>
- <Route path="/mobile-apps" element={<div className="container route-intro"><h1>Experience, in your hands.</h1><p>Cvent Attendee Hub, SpotMe and InEvent. Thoughtful mobile experiences and attendee communications.</p><Link to="/sessions">Explore my experience ↗</Link></div>}/>
- <Route path="/sessions" element={<Agenda/>}/><Route path="/career" element={<Career/>}/><Route path="/credentials" element={<Credentials/>}/><Route path="/contact" element={<Contact/>}/>
- <Route path="*" element={<div className="container route-intro"><h1>This room isn't on the map.</h1><Link to="/">Return to the lobby</Link></div>}/></Routes></main>
- <footer className="footer"><div className="container footer-layout"><span>YEABSIRA MESFIN · EVENT TECHNOLOGY</span><Link to="/contact">Let's connect ↗</Link></div></footer></BrowserRouter>;
-}
+import { clients, profile, progression } from './content';
+function Career(){return <div className="page"><div className="eyebrow">04 / BEHIND THE SCENES</div><h1>The career behind<br/><em>the experience.</em></h1><h2>MMCY</h2><p>February 2022 to August 2025</p><div className="destination-grid">{progression.map(role=><div className="destination" key={role}><h2>{role}</h2></div>)}</div><p>FINAL ROLE · LED 4</p><p>CLIENT PROGRAMS SUPPORTED THROUGH MMCY</p><div className="platform-list">{clients.map(c=><span key={c}>{c}</span>)}</div></div>;}
+function Contact(){return <div className="page contact-page"><div className="eyebrow">06 / THE CLOSING RECEPTION</div><div className="contact-layout"><div><h1>Let's make the next<br/><em>event exceptional.</em></h1><p>Hiring for Cvent, event technology or event operations?<br/>I'd love to hear what you're building.</p><a className="button primary" href={`mailto:${profile.email}?subject=Event%20technology%20opportunity`}>Start a conversation ↗</a><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}</a></div><div className="contact-art" aria-hidden="true"><span>✳</span><p>THE NEXT GREAT EXPERIENCE<br/>STARTS WITH A CONVERSATION.</p></div></div><div className="contact-signoff"><span>THANK YOU FOR STOPPING BY.</span><Link to="/experience">Back to the Event Hub ↗</Link></div></div>;}
+function Shell(){const {pathname}=useLocation();const index=destinations.findIndex(([p])=>p==='/'?pathname==='/':pathname.startsWith(p));useEffect(()=>{window.scrollTo(0,0);document.getElementById('main')?.focus();document.title=`${destinations[index]?.[1]||'Not found'} | Yeabsira Mesfin · Event Technology`;},[pathname,index]);return <><SiteHeader/><div className="wayfinding"><span><span className="status-dot"/> THE EXPERIENCE IS YOURS TO EXPLORE</span><span>{String(Math.max(index,0)+1).padStart(2,'0')} / 07</span></div><main id="main" tabIndex={-1} key={pathname} className="route-enter"><Routes><Route path="/" element={<Home/>}/><Route path="/experience" element={<Hub/>}/><Route path="/mobile-apps" element={<MobileApps/>}/><Route path="/sessions" element={<Agenda/>}/><Route path="/sessions/:id" element={<Agenda/>}/><Route path="/career" element={<Career/>}/><Route path="/credentials" element={<Credentials/>}/><Route path="/contact" element={<Contact/>}/><Route path="*" element={<div className="page"><h1>This room isn't on the map.</h1><Link to="/">Return to the lobby ↗</Link></div>}/></Routes></main><footer className="footer"><span>YEABSIRA MESFIN <span className="footer-divider">/</span> EVENT TECHNOLOGY</span><nav aria-label="Experience navigation">{index>0&&<Link to={destinations[index-1][0]}>← {destinations[index-1][1]}</Link>}{index>=0&&index<destinations.length-1&&<Link to={destinations[index+1][0]}>{destinations[index+1][1]} →</Link>}</nav></footer></>;}
+export default function App(){return <BrowserRouter><Shell/></BrowserRouter>;}
