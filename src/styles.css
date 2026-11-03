@@ -13,3 +13,5 @@
 @media(max-width:560px){.phone-nav button{font-size:7px}}
 .welcome-grid>*{min-width:0}.pass-stage{max-width:100%}
 @media(max-width:360px){.welcome-copy h1{font-size:49px}.pass-stage .orbit{max-width:94%}.event-pass{width:230px}.page h1{overflow-wrap:anywhere}.mobile-story h1{font-size:48px}.wayfinding{letter-spacing:.5px}.hub-tiles{grid-template-columns:1fr}.contact-layout h1{font-size:43px}}
+/* Keep decorative rotating orbits within the pass stage on small screens. */
+.pass-stage{overflow-x:clip}
