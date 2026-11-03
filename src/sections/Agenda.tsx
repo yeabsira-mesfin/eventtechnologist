@@ -1,38 +1,4 @@
-import { useState } from 'react';
-import { sessions } from '../content';
-import { Icon } from '../components/Icon';
-import { SectionHeading } from '../components/SectionHeading';
-
-export function Agenda() {
-  const [activeSession, setActiveSession] = useState<string | null>('01');
-  return <section className="agenda section" id="agenda" aria-labelledby="agenda-title">
-    <div className="container">
-      <div className="agenda-header">
-        <SectionHeading id="agenda-title" eyebrow="01 / THE PROGRAM" heading="The run of show." description="Every great event starts with a plan. Explore the areas I know best, one session at a time."/>
-        <span className="section-corner">CURATED FOR RECRUITERS<br/>AND HIRING TEAMS <span aria-hidden="true">↘</span></span>
-      </div>
-      <div className="agenda-layout">
-        <aside className="agenda-sidebar" aria-label="Agenda overview">
-          <div className="agenda-side-title">YOUR EVENT AGENDA</div><div className="agenda-vertical-line" aria-hidden="true"/>
-          <p>Four areas of expertise.<br/>One seamless experience.</p><span className="agenda-numbers">01 — 04</span>
-        </aside>
-        <div className="session-list">
-          {sessions.map(session => {
-            const expanded = activeSession === session.id;
-            return <article className={`session ${expanded ? 'session-active' : ''}`} key={session.id}>
-              <h3><button type="button" className="session-toggle" id={`button-${session.id}`} aria-controls={`panel-${session.id}`} aria-expanded={expanded} onClick={() => setActiveSession(expanded ? null : session.id)}>
-                <span className="session-number">{session.id}</span>
-                <span className="session-body"><span className="session-tag">{session.tag}</span><span className="session-name">{session.title}</span><span className="session-summary">{session.summary}</span></span>
-                <span className="session-icon"><Icon name={expanded ? 'minus' : 'plus'} size={22}/></span>
-              </button></h3>
-              <div className="session-panel" role="region" id={`panel-${session.id}`} aria-labelledby={`button-${session.id}`} hidden={!expanded}>
-                <p>{session.detail}</p>
-                <div className="session-chips">{session.skills.map(skill => <span key={skill}>{skill}</span>)}</div>
-              </div>
-            </article>;
-          })}
-        </div>
-      </div>
-    </div>
-  </section>;
-}
+import { Link, NavLink, useParams } from 'react-router-dom';
+import { sessions, sessionEvidence } from '../content';
+import { PageHeading } from '../components/ExperienceUI';
+export function Agenda(){const {id}=useParams();const session=sessions.find(s=>s.id===(id||'01'));if(!session)return <div className="page"><h1>Session not found.</h1><Link to="/sessions">View the full program ↗</Link></div>;const detail=sessionEvidence[session.id];return <div className="page"><PageHeading number="03" eyebrow="THE PROFESSIONAL PROGRAM" title={<>Four specialties.<br/><em>One seamless experience.</em></>} description="Explore the work behind my career, one session at a time."/><div className="program-layout"><nav className="program-nav" aria-label="Professional sessions"><div className="program-label">SELECT A SESSION <span>01 / 04</span></div>{sessions.map(s=><NavLink key={s.id} to={`/sessions/${s.id}`} className={()=>`program-row ${session.id===s.id?'selected':''}`} aria-current={session.id===s.id?'page':undefined}><span className="program-number">{s.id}</span><div><small>{s.tag}</small><h2>{s.title}</h2></div><span aria-hidden="true">↗</span></NavLink>)}</nav><article className="session-detail" key={session.id}><div className="detail-top"><span>SESSION {session.id}</span><span>EXPERTISE SPOTLIGHT</span></div><h2>{session.title}</h2><p className="session-lead">{session.summary}</p><div className="platform-list">{detail.platforms.map(p=><span key={p}>{p}</span>)}</div><h3>What I bring to the experience</h3><ul>{detail.capabilities.map(c=><li key={c}>{c}</li>)}</ul><div className="evidence"><div><strong>{detail.metric}</strong><span>{detail.caption}</span></div><p>{detail.evidence}</p></div><div className="session-chips">{session.skills.map(skill=><span key={skill}>{skill}</span>)}</div><Link className="text-link" to={session.id==='02'?'/mobile-apps':session.id==='04'?'/career':'/contact'}>{session.id==='02'?'Explore my mobile career app':session.id==='04'?'Go behind the scenes':'Let’s talk event technology'} ↗</Link></article></div></div>;}
