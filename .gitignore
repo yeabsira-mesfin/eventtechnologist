@@ -1,7 +1,10 @@
-node_modules/
-dist/
+node_modules
+dist
+.DS_Store
+.env
+.env.*
+!.env.example
+.vercel
+*.log
 playwright-report/
 test-results/
-.DS_Store
-.env*
-!.env.example
