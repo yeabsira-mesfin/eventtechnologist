@@ -37,24 +37,24 @@ test('every credential has a genuine lightweight WebP preview', () => {
 
 test('portfolio has all four event sessions, impact claims and career disclosure', () => {
   const content = source('src/content.ts');
-  const app = source('src/App.tsx');
+  const app = source('src/App.tsx', 'src/pages/Career.tsx');
   const agenda = source('src/sections/Agenda.tsx');
   for (const text of ['200+', '5,000+', '12–20', '2 years', 'admission items', 'audience segmentation', 'conditional visibility', 'Cvent Attendee Hub', 'SpotMe', 'InEvent']) {
     assert.ok(content.toLowerCase().includes(text.toLowerCase()), `Missing ${text}`);
   }
   for (const client of ['BCD Travel', 'YPO', 'Abbott', 'CDW']) assert.ok(content.includes(client));
   assert.ok(app.includes('CLIENT PROGRAMS SUPPORTED THROUGH MMCY'));
-  assert.ok(app.includes('FINAL ROLE · LED 4'));
+  assert.ok(content.includes('led a team of 4'));
   assert.equal((content.match(/id: '0[1-4]'/g) || []).length, 4);
-  assert.ok(agenda.includes('aria-expanded={expanded}'));
-  assert.ok(agenda.includes('hidden={!expanded}'));
+  assert.ok(agenda.includes('sessionEvidence'));
+  assert.ok(agenda.includes('useParams'));
 });
 
 test('navigation, links and alt text are handled in source', () => {
   const nav = source('src/components/SiteHeader.tsx');
-  const app = source('src/App.tsx');
+  const app = source('src/App.tsx', 'src/pages/Career.tsx');
   const credentials = source('src/sections/Credentials.tsx');
-  for (const id of ['about','agenda','career','certifications','contact']) assert.ok(nav.includes(id));
+  for (const id of ['experience','mobile-apps','sessions','career','credentials','contact']) assert.ok(nav.includes(id));
   assert.ok(nav.includes("event.key === 'Escape'"));
   assert.ok(nav.includes('aria-expanded={mobileOpen}'));
   assert.ok(nav.includes('hidden={!mobileOpen}'));
@@ -62,7 +62,8 @@ test('navigation, links and alt text are handled in source', () => {
   assert.ok(credentials.includes('alt={`Preview of'));
   assert.ok(credentials.includes('rel="noopener noreferrer"'));
   assert.ok(app.includes('mailto:'));
-  assert.ok(source('src/content.ts').includes('https://yeabsiramesfin.com'));
+  assert.ok(!source('src/content.ts', 'src/App.tsx').includes('https://yeabsiramesfin.com'));
+  assert.ok(credentials.includes('Yeabsira Mefin'));
 });
 
 test('essential deployment files are present', () => {
@@ -72,4 +73,6 @@ test('essential deployment files are present', () => {
   const vercel = JSON.parse(source('vercel.json'));
   assert.equal(vercel.buildCommand, 'npm run build');
   assert.equal(vercel.outputDirectory, 'dist');
+  assert.equal(vercel.rewrites[0].destination, '/index.html');
 });
+
