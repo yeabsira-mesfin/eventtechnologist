@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Icon } from './components/Icon';
 import { SectionHeading } from './components/SectionHeading';
 import { SiteHeader } from './components/SiteHeader';
@@ -29,14 +31,14 @@ function Hero() {
         <h1 id="hero-title">Great events<br/>feel <em>effortless.</em><br/><span>That's the work.</span></h1>
         <p className="hero-subtitle">I'm <strong>{profile.name}</strong>, an event technologist and Cvent specialist turning complex registrations, attendee journeys and event operations into experiences people remember.</p>
         <div className="hero-actions">
-          <a href="#agenda" className="button button-lime">Explore the experience <Icon name="arrow" size={18}/></a>
-          <a href="#certifications" className="text-link">See my credentials <Icon name="external" size={17}/></a>
+          <a href="/experience" className="button button-lime">Explore the experience <Icon name="arrow" size={18}/></a>
+          <a href="/credentials" className="text-link">See my credentials <Icon name="external" size={17}/></a>
         </div>
         <div className="hero-proof"><div className="avatar-monogram" aria-hidden="true">YM</div><div><strong>5+ years in event technology</strong><span>Client delivery · Cvent · Attendee experience</span></div></div>
       </div>
       <EventPass/>
     </div>
-    <div className="hero-bottom container"><span><span className="scroll-icon" aria-hidden="true">↓</span> SCROLL TO EXPLORE</span><span>THOUGHTFULLY BUILT. HUMANLY DELIVERED.</span></div>
+    <div className="hero-bottom container"><span><span className="scroll-icon" aria-hidden="true">↓</span> EXPLORE AT YOUR OWN PACE</span><span>THOUGHTFULLY BUILT. HUMANLY DELIVERED.</span></div>
   </section>;
 }
 
@@ -87,18 +89,13 @@ function Contact() {
   </div></section>;
 }
 
+function RouteReset() { const { pathname } = useLocation(); useEffect(()=>{window.scrollTo(0,0); document.getElementById('main')?.focus();},[pathname]); return null; }
 export default function App() {
-  return <>
-    <SiteHeader/>
-    <main id="main">
-      <Hero/>
-      <Impact/>
-      <Agenda/>
-      <Career/>
-      <Toolkit/>
-      <Credentials/>
-      <Contact/>
-    </main>
-    <footer className="footer"><div className="container footer-layout"><div className="footer-brand">yeabsira<span>.</span> <small>EVENT TECHNOLOGY</small></div><span>Made to feel like an event, because that's what I do.</span><a href={profile.website} target="_blank" rel="noopener noreferrer">Main portfolio <Icon name="external" size={15}/></a></div></footer>
-  </>;
+ return <BrowserRouter><SiteHeader/><RouteReset/><main id="main" tabIndex={-1}><Routes>
+ <Route path="/" element={<><Hero/><Impact/></>}/>
+ <Route path="/experience" element={<><div className="container route-intro"><h1>Your all-access experience.</h1><p>Explore the people, platforms and details behind my career.</p><div className="destination-grid">{[['/mobile-apps','Mobile event apps'],['/sessions','My professional expertise'],['/career','Behind the scenes'],['/credentials','Credentials desk']].map(([path,label])=><Link className="destination-card" to={path} key={path}>{label} ↗</Link>)}</div></div><Toolkit/></>}/>
+ <Route path="/mobile-apps" element={<div className="container route-intro"><h1>Experience, in your hands.</h1><p>Cvent Attendee Hub, SpotMe and InEvent. Thoughtful mobile experiences and attendee communications.</p><Link to="/sessions">Explore my experience ↗</Link></div>}/>
+ <Route path="/sessions" element={<Agenda/>}/><Route path="/career" element={<Career/>}/><Route path="/credentials" element={<Credentials/>}/><Route path="/contact" element={<Contact/>}/>
+ <Route path="*" element={<div className="container route-intro"><h1>This room isn't on the map.</h1><Link to="/">Return to the lobby</Link></div>}/></Routes></main>
+ <footer className="footer"><div className="container footer-layout"><span>YEABSIRA MESFIN · EVENT TECHNOLOGY</span><Link to="/contact">Let's connect ↗</Link></div></footer></BrowserRouter>;
 }

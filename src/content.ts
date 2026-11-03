@@ -7,7 +7,6 @@ export const profile = {
   name: 'Yeabsira Mesfin',
   title: 'Event Technologist & Cvent Specialist',
   email: 'Yeabsira.mesfin29@gmail.com',
-  website: 'https://yeabsiramesfin.com',
   overview: 'I design and deliver the technology behind seamless event experiences, from registration and attendee journeys to operational reliability and reporting.',
 };
 
@@ -80,3 +79,4 @@ export const certifications = [
 export const progression = ['Intern', 'Junior Cvent Developer', 'Account Manager', 'Client Success Advisor', 'Team Lead'];
 export const clients = ['BCD Travel', 'YPO', 'Abbott', 'CDW'];
 export const tools = ['Cvent Event Management', 'Cvent Attendee Hub', 'SpotMe', 'InEvent', 'Event registration', 'Attendee communications', 'Reporting & QA', 'Event operations'];
+
