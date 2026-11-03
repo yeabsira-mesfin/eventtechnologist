@@ -14,7 +14,7 @@ for (const width of [1440, 768, 390, 320]) {
  });
 }
 for (const route of routes) {
- test(`direct route and refresh: ${route}`,async({page})=>{await page.goto(route);const heading=await page.locator('h1').innerText();await page.reload();await expect(page.locator('h1')).toHaveText(heading);});
+ test(`direct route and refresh: ${route}`,async({page})=>{await page.goto(route);const heading=await page.locator('h1').innerText();await page.reload();await expect(page.locator('h1')).toHaveText(heading,{useInnerText:true});});
 }
 test('mobile app screen switches, links and keyboard access',async({page})=>{
  await page.goto('/mobile-apps');const nav=page.getByRole('navigation',{name:'Event app screens'});
