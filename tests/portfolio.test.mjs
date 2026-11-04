@@ -39,12 +39,16 @@ test('portfolio has all four event sessions, impact claims and career disclosure
   const content = source('src/content.ts');
   const app = source('src/App.tsx', 'src/pages/Career.tsx');
   const agenda = source('src/sections/Agenda.tsx');
-  for (const text of ['200+', '5,000+', '12–20', '2 years', 'admission items', 'audience segmentation', 'conditional visibility', 'Cvent Attendee Hub', 'SpotMe', 'InEvent']) {
+  for (const text of ['250+', '5,000+', '20–30', '2 years', 'admission items', 'audience segmentation', 'conditional visibility', 'Cvent Attendee Hub', 'SpotMe', 'InEvent']) {
     assert.ok(content.toLowerCase().includes(text.toLowerCase()), `Missing ${text}`);
   }
   for (const client of ['BCD Travel', 'YPO', 'Abbott', 'CDW']) assert.ok(content.includes(client));
   assert.ok(app.includes('CLIENT PROGRAMS SUPPORTED THROUGH MMCY'));
   assert.ok(content.includes('led a team of 4'));
+  assert.ok(content.includes("'Cvent Developer'"), 'Career progression must include the distinct Cvent Developer role');
+  assert.ok(app.includes('Six career stages'));
+  assert.ok(app.includes('20–30'));
+  assert.ok(!content.includes('200'+'+') && !content.includes('12'+'–20'), 'Outdated metrics must be removed');
   assert.equal((content.match(/id: '0[1-4]'/g) || []).length, 4);
   assert.ok(agenda.includes('sessionEvidence'));
   assert.ok(agenda.includes('useParams'));
