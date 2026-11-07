@@ -162,7 +162,7 @@ export const sessionEvidence: Record<string, {
       'Hotel-related information captured without a clear operational owner',
       'A report or export that does not match registration status',
     ],
-    collaboration: 'Collaborated with event planners on hotel-related attendee information, reporting needs and handoffs; planners owned the lodging arrangements.',
+    collaboration: 'Collaborated with event planners on hotel-related requirements, attendee information, reporting needs and handoffs; planners owned the lodging arrangements.',
     evidence: 'Managed 5,000+ attendee records with zero data loss and maintained two years without a critical incident.',
     metric: '5,000+',
     caption: 'attendee records managed',
