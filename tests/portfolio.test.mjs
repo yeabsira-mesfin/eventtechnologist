@@ -95,7 +95,7 @@ test('advanced delivery content shows real configuration, QA and honest planner 
  }
  assert.equal((content.match(/riskChecks: \[/g) || []).length, 4);
  assert.equal((content.match(/deliveryFlow: \[/g) || []).length, 4);
- assert.ok(content.includes('hotel sourcing and booking decisions remained'));
+ assert.ok(content.includes('planners owned the lodging arrangements'));
  assert.ok(content.includes('led a team of 4'));
  assert.ok(agenda.includes('workflow-list') && agenda.includes('risk-list'));
  assert.ok(agenda.includes('experience-disclosure'));
