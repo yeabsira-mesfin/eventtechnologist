@@ -51,7 +51,7 @@ test('advanced delivery pages show technical decisions, workflows, QA gates and 
 test('event operations explains hotel handoffs without claiming hotel sourcing', async ({page}) => {
  await page.goto('/sessions/03');
  await expect(page.locator('.session-detail')).toContainText('hotel-related requirements');
- await expect(page.locator('.session-detail')).toContainText('hotel sourcing and booking decisions remained');
+ await expect(page.locator('.session-detail')).toContainText('planners owned the lodging arrangements');
 });
 
 test('mobile navigation dismisses on outside interaction and viewport resize', async ({page}) => {
