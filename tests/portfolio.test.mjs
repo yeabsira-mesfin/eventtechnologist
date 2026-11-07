@@ -80,3 +80,26 @@ test('essential deployment files are present', () => {
   assert.equal(vercel.rewrites[0].destination, '/index.html');
 });
 
+
+test('advanced delivery content shows real configuration, QA and honest planner boundaries', () => {
+ const content = source('src/content.ts');
+ const agenda = source('src/sections/Agenda.tsx');
+ const career = source('src/pages/Career.tsx');
+ const mobile = source('src/pages/MobileApps.tsx');
+ const navigation = source('src/components/SiteHeader.tsx');
+ for (const keyword of [
+  'registration types', 'conditional visibility', 'riskChecks', 'deliveryFlow',
+'5,000+', '20–30', 'hotel-related', 'planner handoffs'
+ ]) {
+  assert.ok(content.toLowerCase().includes(keyword.toLowerCase()) || mobile.toLowerCase().includes(keyword.toLowerCase()), `Missing technical evidence: ${keyword}`);
+ }
+ assert.equal((content.match(/riskChecks: \[/g) || []).length, 4);
+ assert.equal((content.match(/deliveryFlow: \[/g) || []).length, 4);
+ assert.ok(content.includes('hotel sourcing and booking decisions remained'));
+ assert.ok(content.includes('led a team of 4'));
+ assert.ok(agenda.includes('workflow-list') && agenda.includes('risk-list'));
+ assert.ok(agenda.includes('experience-disclosure'));
+ assert.ok(career.includes('career-detail'));
+ assert.ok(navigation.includes('onOutsidePointer'));
+ assert.ok(navigation.includes('matchMedia'));
+});
