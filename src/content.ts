@@ -238,7 +238,7 @@ export const careerStages = [
   {
     role: 'Team Lead',
     chapter: 'Technical judgment at portfolio scale',
-    description: 'Led a team of 4 while coordinating 20–30 concurrent projects. Balanced build quality, stakeholder expectations and delivery risk across multiple enterprise programs, using technical familiarity to prioritize reviews, handoffs and escalations.',
+    description: 'I led a team of 4 while coordinating 20–30 concurrent projects. Balanced build quality, stakeholder expectations and delivery risk across multiple enterprise programs, using technical familiarity to prioritize reviews, handoffs and escalations.',
     focus: 'Quality ownership, prioritization and four-person team leadership',
     connection: 'Explore how I coordinate enterprise event delivery.',
     link: '/sessions/04',
