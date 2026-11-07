@@ -147,7 +147,7 @@ export const sessionEvidence: Record<string, {
     capabilities: [
       'Validate registration records and the completeness of critical attendee fields',
       'Support operational reports, exception handling and accurate data handoffs',
-      'Coordinate hotel-related registration requirements with event planners without presenting room sourcing as my responsibility',
+      'Translate hotel-related registration questions and attendee needs into clear data requirements with event planners',
       'Troubleshoot registration issues while protecting data integrity',
     ],
     objective: 'Ensure attendee data remains reliable when planners need it for real operational decisions.',
@@ -162,7 +162,7 @@ export const sessionEvidence: Record<string, {
       'Hotel-related information captured without a clear operational owner',
       'A report or export that does not match registration status',
     ],
-    collaboration: 'Worked with event planners on hotel-related requirements and attendee coordination. The hotel sourcing and booking decisions remained with the relevant planning teams.',
+    collaboration: 'Collaborated with event planners on hotel-related attendee information, reporting needs and handoffs; planners owned the lodging arrangements.',
     evidence: 'Managed 5,000+ attendee records with zero data loss and maintained two years without a critical incident.',
     metric: '5,000+',
     caption: 'attendee records managed',
