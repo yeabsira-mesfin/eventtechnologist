@@ -15,3 +15,32 @@
 @media(max-width:360px){.welcome-copy h1{font-size:49px}.pass-stage .orbit{max-width:94%}.event-pass{width:230px}.page h1{overflow-wrap:anywhere}.mobile-story h1{font-size:48px}.wayfinding{letter-spacing:.5px}.hub-tiles{grid-template-columns:1fr}.contact-layout h1{font-size:43px}}
 /* Keep decorative rotating orbits within the pass stage on small screens. */
 .pass-stage{overflow-x:clip}
+
+/* Advanced technical delivery case studies */
+.program-layout > *, .session-detail, .tech-brief, .brief-panel {min-width:0}
+.tech-brief{margin:28px 0 20px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#f3f5e8}
+.tech-brief-intro{padding:23px 25px;background:#e6ecd6}
+.brief-label{display:block;font-size:9px;font-weight:700;line-height:1.5;letter-spacing:1.25px;color:#567047;margin-bottom:10px}
+.session-detail .tech-brief h3{font-size:17px;line-height:1.3;letter-spacing:-.3px;margin:0 0 10px;color:var(--green)}
+.tech-brief-intro p,.collaboration-note p{font-size:13px;line-height:1.65;color:#3d5748}
+.tech-brief-body{display:grid;grid-template-columns:1.2fr 1fr}
+.brief-panel{padding:23px 24px}
+.brief-panel + .brief-panel{border-left:1px solid var(--line)}
+.workflow-list,.risk-list{list-style:none;padding:0;margin:13px 0 0}
+.workflow-list li{display:flex;gap:11px;padding:12px 0;border-top:1px solid #d8dfca}
+.workflow-list li>span{font-size:10px;font-weight:700;color:#698542;flex:0 0 23px;padding-top:3px}
+.workflow-list p{font-size:12px;line-height:1.58;color:#435849}
+.risk-list li{position:relative;padding:11px 0 11px 20px;font-size:12px;line-height:1.6;color:#435849;border-top:1px solid #d8dfca}
+.risk-list li:before{content:'!';position:absolute;left:0;top:12px;display:grid;place-items:center;border:1px solid #a2b383;color:#4f7042;border-radius:50%;width:14px;height:14px;font-size:9px;font-weight:700}
+.collaboration-note{padding:20px 25px;border-top:1px solid var(--line);background:#f0f3e6}
+.session-detail .capabilities-title{margin-top:28px;font-size:15px;letter-spacing:-.15px}
+.session-detail .capability-list{margin:13px 0 24px;padding-left:21px;line-height:1.75}
+.experience-disclosure{font-size:10px;line-height:1.6;color:#6a7769;margin-top:17px;margin-bottom:2px}
+.session-detail .evidence{background:#e4edcf}
+.session-detail .evidence p{line-height:1.65;font-size:11px}
+.program-row:focus-visible{outline:3px solid #728f35;outline-offset:2px}
+.career-stages button:focus-visible,.phone-nav button:focus-visible{outline-offset:0}
+.mobile-nav a:focus-visible{outline-offset:-3px}
+.phone-nav button{overflow-wrap:anywhere}
+@media(max-width:950px){.tech-brief-body{grid-template-columns:1fr}.brief-panel + .brief-panel{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:560px){.tech-brief{margin-top:24px}.tech-brief-intro,.brief-panel,.collaboration-note{padding:18px}.session-detail .tech-brief h3{font-size:16px}.workflow-list p,.risk-list li{font-size:11px}.tech-brief-intro p,.collaboration-note p{font-size:12px}.session-detail .evidence{flex-direction:column;gap:7px}.evidence>div{min-width:0}.evidence span{max-width:none}.career-stages{scrollbar-width:thin}.phone-nav button{line-height:1.3}}
