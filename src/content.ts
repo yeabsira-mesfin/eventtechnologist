@@ -188,7 +188,7 @@ export const sessionEvidence: Record<string, {
       'Parallel deadlines causing skipped review or rushed handoffs',
     ],
     collaboration: 'Supported BCD Travel, YPO, Abbott and CDW programs through MMCY, while progressing from intern to team lead.',
-    evidence: 'Led a team of 4 and supported 20–30 concurrent projects. Enterprise clients were supported through MMCY, not direct employers.',
+    evidence: 'I led a team of 4 and supported 20–30 concurrent projects. Enterprise clients were supported through MMCY, not direct employers.',
     metric: '20–30',
     caption: 'concurrent projects',
   },
