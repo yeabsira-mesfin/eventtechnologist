@@ -57,6 +57,7 @@ export const certifications = [
     name: 'Cvent Event Management',
     track: 'EVENT MANAGEMENT',
     date: 'Nov 02, 2026',
+    dateISO: '2026-11-02',
     preview: '/previews/cvent-event-management.webp',
     pdf: '/certificates/cvent-event-management.pdf',
   },
@@ -64,6 +65,7 @@ export const certifications = [
     name: 'Cvent Event Management Advanced',
     track: 'ADVANCED EVENT MANAGEMENT',
     date: 'Nov 02, 2026',
+    dateISO: '2026-11-02',
     preview: '/previews/cvent-event-management-advanced.webp',
     pdf: '/certificates/cvent-event-management-advanced.pdf',
   },
@@ -71,8 +73,17 @@ export const certifications = [
     name: 'Cvent Attendee Hub',
     track: 'ATTENDEE HUB',
     date: 'Nov 02, 2026',
+    dateISO: '2026-11-02',
     preview: '/previews/cvent-attendee-hub.webp',
     pdf: '/certificates/cvent-attendee-hub.pdf',
+  },
+  {
+    name: 'Cvent Account Administrator',
+    track: 'ACCOUNT ADMINISTRATION',
+    date: 'Nov 25, 2026',
+    dateISO: '2026-11-25',
+    preview: '/previews/cvent-account-administrator.webp',
+    pdf: '/certificates/cvent-account-administrator.pdf',
   },
 ];
 
