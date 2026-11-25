@@ -12,6 +12,7 @@ const certs = [
   'cvent-event-management',
   'cvent-event-management-advanced',
   'cvent-attendee-hub',
+  'cvent-account-administrator',
 ];
 
 test('the original PDF certificates are present and unchanged', () => {
